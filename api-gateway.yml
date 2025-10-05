@@ -1,0 +1,30 @@
+server:
+  port: 8080 
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: order-service-route
+          uri: lb://ORDER-SERVICE 
+          predicates:
+            - Path=/api/orders/**, /order-service/v3/api-docs/** 
+
+        - id: distributor-service-route
+          uri: lb://DISTRIBUTOR-SERVICE
+          predicates:
+            - Path=/api/distributors/**, /distributor-service/v3/api-docs/**
+        - id: staff-service-route
+          uri: lb://STAFF-SERVICE
+          predicates:
+            - Path=/api/staff/**, /staff-service/v3/api-docs/**
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    urls:
+      - name: 'Order Service (Заказы)' 
+        url: /order-service/v3/api-docs 
+      - name: 'Distributor Service (Распределение)'
+        url: /distributor-service/v3/api-docs
+      - name: 'Staff Service (Персонал)'
+        url: /staff-service/v3/api-docs
