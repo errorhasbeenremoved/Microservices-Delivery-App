@@ -5,9 +5,9 @@ spring:
   application:
     name: staff-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/staff_db
+    url: jdbc:postgresql://localhost:5432/staff_pr9
     username: postgres
-    password: 12345
+    password: postgres
     
   jpa:
     hibernate:
