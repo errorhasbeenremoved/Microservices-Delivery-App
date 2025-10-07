@@ -3,9 +3,9 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/distributor_db
+    url: jdbc:postgresql://localhost:5432/Rasped_pr9
     username: postgres
-    password: 12345
+    password: postgres
   jpa:
     hibernate:
       ddl-auto: update
