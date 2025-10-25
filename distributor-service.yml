@@ -1,5 +1,5 @@
 server:
-  port: 8083
+  port: 8081
 
 spring:
   datasource:
@@ -15,5 +15,5 @@ springdoc:
   api-docs:
     enabled: true
   group-configs:
-    - group: 'distributor-service'
-      paths-to-match: '/api/distributor/**'
+    - group: 'distrubutor-service'
+      paths-to-match: '/api/distributors/**'
