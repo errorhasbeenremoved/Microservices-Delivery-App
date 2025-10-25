@@ -1,30 +1,38 @@
 server:
-  port: 8080 
+  port: 9000
+
 spring:
+  application:
+    name: api-gateway
   cloud:
     gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
       routes:
+        - id: product-service-route
+          uri: lb://order-service
+          predicates:
+            - Path=/api/orders/**
+          filters:
+            - RewritePath=/api/orders(?<segment>/?.*), /products$\{segment}
+            - name: AuthenticationFilter
+
         - id: order-service-route
-          uri: lb://ORDER-SERVICE 
+          uri: lb://distrubutor-service
           predicates:
-            - Path=/api/orders/**, /order-service/v3/api-docs/** 
+            - Path=/api/distrubutors/**
+          filters:
+            - RewritePath=/api/distrubutors(?<segment>/?.*), /orders$\{segment}
+            - name: AuthenticationFilter
 
-        - id: distributor-service-route
-          uri: lb://DISTRIBUTOR-SERVICE
+        - id: user-service-route
+          uri: lb://staff-service
           predicates:
-            - Path=/api/distributors/**, /distributor-service/v3/api-docs/**
-        - id: staff-service-route
-          uri: lb://STAFF-SERVICE
-          predicates:
-            - Path=/api/staff/**, /staff-service/v3/api-docs/**
-
-springdoc:
-  swagger-ui:
-    path: /swagger-ui.html
-    urls:
-      - name: 'Order Service (Заказы)' 
-        url: /order-service/v3/api-docs 
-      - name: 'Distributor Service (Распределение)'
-        url: /distributor-service/v3/api-docs
-      - name: 'Staff Service (Персонал)'
-        url: /staff-service/v3/api-docs
+            - Path=/api/staffs/**
+          filters:
+            - RewritePath=/api/staffs(?<segment>/?.*), /users$\{segment}
+            - name: AuthenticationFilter
+jwt:
+  secret: bXktc3VwZXItc2VjdXJlLWFuZC1sb25nLXNlY3JldC1rZXktZm9yLWp3dC1zaWduYXR1cmUtZGRkY2YtMzZiNC00MWQ5LWE0ZmU=
