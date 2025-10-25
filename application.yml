@@ -18,8 +18,8 @@ springdoc:
   swagger-ui:
     group-urls:
       - name: Products
-        url: /distrubutor/v3/api-docs
+        url: /distrubutors/v3/api-docs
       - name: Orders
         url: /orders/v3/api-docs
       - name: Users
-        url: /staff/v3/api-docs
+        url: /staffs/v3/api-docs
