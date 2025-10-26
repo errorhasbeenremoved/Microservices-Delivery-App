@@ -16,6 +16,10 @@ spring:
       hibernate:
         format_sql: true
 
+feign:
+  okhttp:
+    enabled: true
+
 resilience4j:
   circuitbreaker:
     instances:
