@@ -11,28 +11,27 @@ spring:
           enabled: true
           lower-case-service-id: true
       routes:
-        - id: product-service-route
-          uri: lb://order-service
-          predicates:
-            - Path=/api/orders/**
-          filters:
-            - RewritePath=/api/orders(?<segment>/?.*), /products$\{segment}
-            - name: AuthenticationFilter
-
         - id: order-service-route
-          uri: lb://distrubutor-service
+          uri: lb://order-service        
           predicates:
-            - Path=/api/distrubutors/**
+            - Path=/api/orders/**      
           filters:
-            - RewritePath=/api/distrubutors(?<segment>/?.*), /orders$\{segment}
-            - name: AuthenticationFilter
+            - RewritePath=/api/orders(?<segment>/?.*), /api/orders$\{segment}
 
-        - id: user-service-route
-          uri: lb://staff-service
+        - id: distributor-service-route
+          uri: lb://distributor-service 
           predicates:
-            - Path=/api/staffs/**
+            - Path=/api/distributors/** 
           filters:
-            - RewritePath=/api/staffs(?<segment>/?.*), /users$\{segment}
-            - name: AuthenticationFilter
+            - RewritePath=/api/distributors(?<segment>/?.*), /api/distributors$\{segment}
+
+        - id: staff-service-route
+          uri: lb://staff-service 
+          predicates:
+            - Path=/api/staffs/**  
+          filters:
+            - RewritePath=/api/staffs(?<segment>/?.*), /api/staffs$\{segment}
+
+
 jwt:
   secret: bXktc3VwZXItc2VjdXJlLWFuZC1sb25nLXNlY3JldC1rZXktZm9yLWp3dC1zaWduYXR1cmUtZGRkY2YtMzZiNC00MWQ5LWE0ZmU=
