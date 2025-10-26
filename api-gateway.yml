@@ -9,20 +9,9 @@ spring:
       globalcors:
         cors-configurations:
           '[/**]': 
-            allowed-origins:
-              - "http://localhost:3000"
-              - "http://127.0.0.1:3000"
-              - "http://localhost:3001"
-              - "http://127.0.0.1:3001" 
-            allowed-methods:
-              - GET
-              - POST
-              - PUT
-              - PATCH
-              - DELETE
-              - OPTIONS
+            allowed-origins: "*" 
+            allowed-methods: "*" 
             allowed-headers: "*" 
-            max-age: 3600 
       
       discovery:
         locator:
@@ -51,4 +40,6 @@ spring:
             - RewritePath=/api/staffs(?<segment>/?.*), /api/staffs$\{segment}
 
 jwt:
-  secret: bXktc3VwZXItc2VjdXJlLWFuZC1sb25nLXNlY3JldC1rZXktZm9yLWp3dC1zaWduYXR1cmUtZGRkY2YtMzZiNC00MWQ5LWE0ZmU=
+  secret: bXktc3VwZXItc2VjdXJlLWFuZC1sb25nLXNlYJldC1rZXktZm9yLWp3dC1zaWduYXR1cmUtZGRkY2YtMzZiNC00MWQ5LWE0ZmU=
+
+
