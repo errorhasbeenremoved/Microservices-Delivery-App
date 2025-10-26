@@ -6,13 +6,6 @@ spring:
     name: api-gateway
   cloud:
     gateway:
-      globalcors:
-        cors-configurations:
-          '[/**]': 
-            allowed-origins: "*" 
-            allowed-methods: "*" 
-            allowed-headers: "*" 
-      
       discovery:
         locator:
           enabled: true
@@ -24,22 +17,17 @@ spring:
             - Path=/api/orders/**      
           filters:
             - RewritePath=/api/orders(?<segment>/?.*), /api/orders$\{segment}
-
         - id: distributor-service-route
           uri: lb://distributor-service 
           predicates:
             - Path=/api/distributors/** 
           filters:
             - RewritePath=/api/distributors(?<segment>/?.*), /api/distributors$\{segment}
-
         - id: staff-service-route
           uri: lb://staff-service 
           predicates:
             - Path=/api/staffs/**  
           filters:
             - RewritePath=/api/staffs(?<segment>/?.*), /api/staffs$\{segment}
-
 jwt:
   secret: bXktc3VwZXItc2VjdXJlLWFuZC1sb25nLXNlYJldC1rZXktZm9yLWp3dC1zaWduYXR1cmUtZGRkY2YtMzZiNC00MWQ5LWE0ZmU=
-
-
