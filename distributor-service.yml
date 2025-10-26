@@ -2,6 +2,8 @@ server:
   port: 8081
 
 spring:
+  application:
+    name: distributor-service
   datasource:
     url: jdbc:postgresql://localhost:5432/distributor_db
     username: postgres
@@ -15,5 +17,5 @@ springdoc:
   api-docs:
     enabled: true
   group-configs:
-    - group: 'distrubutor-service'
+    - group: 'distributor-service'
       paths-to-match: '/api/distributors/**'
